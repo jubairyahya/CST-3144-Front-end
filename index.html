@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JUHA Course</title>
+    <link rel="stylesheet" href="style.css">
+    <script src"https://unpkg.com/vue@3/dist/vue.globalprod.js></script>
+    
+</head>
+<body>
+    <div id="app">
+        <header>
+                <!--left side section-->
+                <div class ="header-left">
+                    <button @click="currentPage='home'">Home</button>
+                         <button @click="currentPage='admin'">Admin</button>
+
+                         <!--Search in the home page-->
+                         <div v-if="currentPage ==='home'"class="search-container">
+                            <input type="text" v-model="searchQuery" placeholder="Search for lessons" @input="fetchLessons" class="search-box"/>
+                         </div>
+                </div>
+                <!--title in the centre-->
+                <h1> JuHa Course</h1>
+<!--Right side Section-->
+<div class ="headaer-right">
+<div class =" cart-wrapper" @click="currentPage='cart'">
+    <img v-if="currentPage==='home' || currentPage==='cart" src="images/cart3.png" alt="Cart" class="cart-icon" :class="{disabled:cat.length===0}">
+    <span v-if="cart.length >0" class="cart-count">{{totalItems}}</span>
+</div> 
+           </div>
+        </header>
+         <!-- MAIN CONTAINER -->
+    <div class="container">
+
+      <!-- HOME PAGE -->
+      <div v-if="currentPage==='home'" class="home-page">
+        <!-- Sort/Search  Bar -->
+        <div class="search-sort">
+          <select v-model="sortField" @change="sortLessons">
+            <option value="">Sort By</option>
+            <option value="topic">Topic</option>
+            <option value="location">Location</option>
+            <option value="price">Price</option>
+            <option value="space">Spaces</option>
+          </select>
+
+          <select v-model="sortOrder" @change="sortLessons">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
+
+        <div class="page-layout">
+          <!-- Left Column -->
+          <div class="left-column">
+            <h4>About the Course</h4>
+            <p>Gain lifetime access to all our premium lessons and master new skills at your own pace.</p>
+            <ul>
+              <li>Lifetime access to every course</li>
+              <li>24/7 support and guidance</li>
+              <li>Active learner community</li>
+              <li>Weekly live Q&amp;A sessions</li>
+              <li>Certificate upon completion</li>
+            </ul>
+          </div>
+
+          <!-- Center Column (Lessons) -->
+          <div class="center-column">
+            <div class="lessons-container">
+              <div v-for="lesson in lessons" :key="lesson._id" class="lesson-card">
+                <img :src="'http://localhost:5000/images/' + lesson.image" alt="">
+                <h3>{{ lesson.topic }}</h3>
+                <p>{{ lesson.location }}</p>
+                <p>Price: £{{ lesson.price }}</p>
+                <p>Spaces: {{ lesson.space }}</p>
+                <button @click="addToCart(lesson)" :disabled="lesson.space===0">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="right-column">
+            <h4>Highlights</h4>
+            <ul class="cursive-list">
+              <li>Get 30% off all courses today</li>
+              <li>Buy within 24 hours for 70% off top lessons</li>
+              <li>New topics added weekly</li>
+              <li>Flexible schedules for all learners</li>
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    </div>
+</body>
+</html>
