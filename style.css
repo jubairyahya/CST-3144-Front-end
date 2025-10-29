@@ -261,3 +261,94 @@ header h1{
 .lesson-card button:hover {
   background-color: #060116;
 }
+/*  CART PAGE  */
+.cart-page input {
+  width: 200px;
+  padding: 0.5rem;
+  margin: 0.3rem auto;
+  text-align: center;
+}
+
+.cart-page button {
+  margin: 0.5rem 0;
+}
+
+.cart-item-image {
+  width: 120px;
+  /* desired width */
+  height: 80px;
+  /* desired height */
+  object-fit: cover;
+  /* maintain aspect ratio and crop if needed */
+  border-radius: 5px;
+  /* optional, for a nicer look */
+}
+
+/*  CHECKOUT BOX  */
+.checkout-box {
+  background: white;
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 0.5rem;
+}
+
+.checkout-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.checkout-row input {
+  flex: 1 1 140px;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.checkout-row select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  flex: 1;
+  background-color: #fff;
+}
+
+.checkout-box button {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  background-color: #23162f;
+  color: white;
+  cursor: pointer;
+}
+
+.checkout-box button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.card-section input,
+.card-section select {
+  width: 200px;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.error-msg {
+  color: #c0392b;
+  margin-top: 0.25rem;
+}

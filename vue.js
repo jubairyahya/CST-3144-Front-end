@@ -1,16 +1,77 @@
-const{craeteApp,ref,computed,onMounted}=Vue;
+const { craeteApp, ref, computed, onMounted } = Vue;
 
 createApp({
-    setup(){
-        const currentPage=ref('home');
-        const cart=ref([]);
-        const searchQuery=ref('')
-    
+    setup() {
+        const currentPage = ref('home');
+        const lessons = ref([]);
+        const cart = ref([]);
+        const searchQuery = ref('');
+        const sortField = ref('');
+        const sosrtOrder = ref('asc');
+
+
+        // Checkout form
+        const firstName = ref('');
+        const lastName = ref('');
+        const address = ref('');
+        const city = ref('');
+        const country = ref('');
+        const countries = ref([
+            "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia",
+            "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados",
+            "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina",
+            "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia",
+            "Cameroon", "Canada", "Cape Verde", "Central African Republic", "Chad", "Chile",
+            "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus",
+            "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador",
+            "Egypt", "El Salvador", "Estonia", "Ethiopia", "Fiji", "Finland", "France", "Gabon",
+            "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea",
+            "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran",
+            "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan",
+            "Kenya", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia",
+            "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi",
+            "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico",
+            "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar",
+            "Namibia", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria",
+            "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palestine", "Panama",
+            "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar",
+            "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Samoa",
+            "San Marino", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone",
+            "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa",
+            "South Korea", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland",
+            "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga",
+            "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Uganda", "Ukraine",
+            "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan",
+            "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+        ]);
+
+        const postcode = ref('');
+        const phone = ref('');
+        const email = ref('');
+        // Payment fields
+        const paymentMethod = ref('card'); // default
+        const cardType = ref('');
+        const cardNumber = ref('');
+        const cardName = ref('');
+        const cardExpiry = ref(''); // MM/YY
+        const cardCVV = ref('');
+        const cardError = ref('');
+
+        // total in the cart 
+        const totalItems = computed(() =>
+            cart.value.reduce((sum, i) => sum + i.quantity, 0)
+        );
+
+        const totalPrice = computed(() =>
+            cart.value.reduce((sum, i) => sum + i.price * i.quantity, 0)
+        );
+
         onMounted();
-        return{
-            currentPage,
-            cart,
-            searchQuery
+        return {
+            currentPage, searchQuery, cart, searchQuery, sortField, sortOrder, 
+            firstName, lastName, address, city, country, countries, postcode, phone, 
+            email, paymentMethod,cardType, cardNumber, cardName, cardExpiry, cardCVV, 
+            cardError,totalItems,totalPrice,
         };
     },
 }).mount('#app');
