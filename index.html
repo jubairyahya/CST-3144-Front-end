@@ -159,15 +159,60 @@
               </div>
 
               <button @click="checkout" :disabled="!validForm">Checkout</button>
-
             </div>
           </div>
         </div>
+<!--admin page-->
+<div v-if="currrentPage==='admin'" class="admin-page">
+    <!-- admin login box -->
+        <div v-if="!loggedIn" class="admin-box">
+          <h2>Admin Login</h2>
+          <input v-model="username" placeholder="Username">
+          <input type="password" v-model="password" placeholder="Password">
+          <button @click="login">Login</button>
+        </div>
+
+        <!--Admin add lesson and admin dashboard-->
+        <div v-else class="admin-dashboard">
+
+          <div class="admin-section">
+            <h3>Add Lesson</h3>
+            <div class="admin-add-card">
+              <input v-model="topic" placeholder="Enter Topic">
+              <input v-model="location" placeholder="Enter Location">
+              <input type="number" v-model="price" placeholder="Enter Price">
+              <input type="number" v-model="space" placeholder="Enter Spaces">
+              <input type="file" @change="onFileChange">
+              <button @click="addLesson">Add Lesson</button>
+            </div>
+          </div>
+          <button class="logout-btn-page" v-if="loggedIn" @click="logout">Logout</button>
+          <hr>
+
+          <div class="admin-section">
+            <h3>All Lessons</h3>
+            <div v-if="lessons.length === 0">No lessons found.</div>
+            <div v-else class="admin-lessons-list">
+              <div v-for="lesson in lessons" :key="lesson._id" class="admin-lesson-item">
+                <img :src="'http://localhost:5000/images/' + lesson.image" alt="" width="80">
+                <div>
+                  <strong>{{ lesson.topic }}</strong> - £{{ lesson.price }} ({{ lesson.space }} spaces)
+                  <p>{{ lesson.location }}</p>
+                </div>
+                <button @click="editLesson(lesson)">Edit</button>
+                <button @click="deleteLesson(lesson._id)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
 
 
       </div>
     </div>
   </div>
+  
+  <script src="vue.js"></script>
 </body>
 
 </html>

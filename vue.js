@@ -66,6 +66,19 @@ createApp({
             cart.value.reduce((sum, i) => sum + i.price * i.quantity, 0)
         );
 
+            function sortLessons() {
+      if (!sortField.value) return;
+      lessons.value.sort((a, b) => {
+        let aVal = a[sortField.value];
+        let bVal = b[sortField.value];
+        if (typeof aVal === 'string') aVal = aVal.toLowerCase();
+        if (typeof bVal === 'string') bVal = bVal.toLowerCase();
+        if (aVal < bVal) return sortOrder.value === 'asc' ? -1 : 1;
+        if (aVal > bVal) return sortOrder.value === 'asc' ? 1 : -1;
+        return 0;
+      });
+    }
+
         onMounted();
         return {
             currentPage, searchQuery, cart, searchQuery, sortField, sortOrder, 
