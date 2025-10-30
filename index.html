@@ -8,7 +8,7 @@
 
   <title>JUHA Course</title>
   <link rel="stylesheet" href="style.css">
-  <script src"https://unpkg.com/vue@3/dist/vue.globalprod.js></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.globalprod.js"></script>
 
 </head>
 
@@ -31,7 +31,7 @@
       <!--Right side Section-->
       <div class="headaer-right">
         <div class=" cart-wrapper" @click="currentPage='cart'">
-          <img v-if="currentPage==='home' || currentPage==='cart" src="images/cart3.png" alt="Cart" class="cart-icon"
+          <img v-if="currentPage==='home' || currentPage==='cart'" src="images/cart3.png" alt="Cart" class="cart-icon"
             :class="{disabled:cat.length===0}">
           <span v-if="cart.length >0" class="cart-count">{{totalItems}}</span>
         </div>
@@ -163,7 +163,7 @@
           </div>
         </div>
 <!--admin page-->
-<div v-if="currrentPage==='admin'" class="admin-page">
+<div v-if="currentPage==='admin'" class="admin-page">
     <!-- admin login box -->
         <div v-if="!loggedIn" class="admin-box">
           <h2>Admin Login</h2>

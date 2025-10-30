@@ -7,7 +7,7 @@ createApp({
         const cart = ref([]);
         const searchQuery = ref('');
         const sortField = ref('');
-        const sosrtOrder = ref('asc');
+        const sortOrder = ref('asc');
 
 
         // Checkout form
@@ -77,6 +77,34 @@ createApp({
         if (aVal > bVal) return sortOrder.value === 'asc' ? 1 : -1;
         return 0;
       });
+    }
+
+    //admin
+    async function login() {
+        try {
+        const res = await fetch('http://localhost:5000/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: username.value,
+            password: password.value,
+          }),
+        });
+
+        if (!res.ok) {
+          alert('Invalid credentials');
+          return;
+        }
+
+        const data = await res.json();
+        adminKey.value = data.adminKey;
+        loggedIn.value = true;
+        alert('Login successful!');
+        currentPage.value = 'admin'; // Stay on admin page after login
+      } catch (err) {
+        console.error('Login error:', err);
+        alert('Login failed.');
+      }
     }
 
         onMounted();
