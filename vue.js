@@ -1,4 +1,4 @@
-const { craeteApp, ref, computed, onMounted } = Vue;
+const { createApp, ref, computed, onMounted } = Vue;
 
 createApp({
   setup() {
@@ -15,7 +15,12 @@ createApp({
     const loggedIn = ref(false);
     const adminKey = ref('');
 
-
+    // lesson from (admin)
+    const topic =ref('');
+    const location =ref('');
+    const price=ref('null');
+    const space=ref('null');
+    const imageFile=ref('null');
 
     // Checkout form
     const firstName = ref('');
@@ -114,12 +119,28 @@ createApp({
       }
     }
 
-    onMounted();
+// fetch lessons
+    async function fetchLessons(skipPageChange = false) {
+      try {
+        let url = 'http://localhost:5000/lessons';
+        if (searchQuery.value)
+          url = `http://localhost:5000/search?q=${encodeURIComponent(searchQuery.value)}`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Failed to load lessons');
+        lessons.value = await res.json();
+        sortLessons();
+        if (!skipPageChange) currentPage.value = currentPage.value;
+      } catch (err) {
+        console.error('Failed to fetch lessons:', err);
+      }
+    }
+
+    onMounted(fetchLessons);
     return {
       currentPage, searchQuery, cart, searchQuery, sortField, sortOrder,
       firstName, lastName, address, city, country, countries, postcode, phone,
       email, paymentMethod, cardType, cardNumber, cardName, cardExpiry, cardCVV,
-      cardError, totalItems, totalPrice,
+      cardError, totalItems, totalPrice,topic,location, price, space,imageFile,
     };
   },
 }).mount('#app');

@@ -8,8 +8,7 @@
 
   <title>JUHA Course</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/vue@3/dist/vue.globalprod.js"></script>
-
+ <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 </head>
 
 <body>
@@ -29,10 +28,10 @@
       <!--title in the centre-->
       <h1> JuHa Course</h1>
       <!--Right side Section-->
-      <div class="headaer-right">
+      <div class="header-right">
         <div class=" cart-wrapper" @click="currentPage='cart'">
           <img v-if="currentPage==='home' || currentPage==='cart'" src="images/cart3.png" alt="Cart" class="cart-icon"
-            :class="{disabled:cat.length===0}">
+            :class="{disabled:cart.length===0}">
           <span v-if="cart.length >0" class="cart-count">{{totalItems}}</span>
         </div>
       </div>
@@ -105,10 +104,10 @@
           <h2>Shopping Cart</h2>
           <div v-if="cart.length===0"> Your cart is empty</div>
           <div v-else>
-            <div v-for="item in the cart" :key="item._id" class="cart-item">
+            <div v-for="item in cart" :key="item._id" class="cart-item">
 
               <img :src="'' +item.image" :alt="item.topic" class="cart-item-image" />
-              <p> {{item.topic}} - {{item quantity}} x£{{ item.price }}</p>
+              <p> {{item.topic}} - {{item.quantity}} x£{{ item.price }}</p>
               <button @click="removeFromCart(item.id)">Remove</button>
             </div>
             <h3> Total:£{{ totalPrice }} </h3>
