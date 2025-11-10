@@ -363,7 +363,7 @@ createApp({
         formData.append('price', price.value);
         formData.append('space', space.value);
         formData.append('image', imageFile.value);
-        formData.append('description', this.description);
+        formData.append('description', description.value);
 
         const res = await fetch('http://localhost:5000/admin/lessons', {
           method: 'POST',
