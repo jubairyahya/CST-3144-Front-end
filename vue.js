@@ -22,6 +22,7 @@ createApp({
     const price = ref(null);
     const space = ref(null);
     const imageFile = ref(null);
+    const description = ref('');
 
     // Checkout form
     const firstName = ref('');
@@ -362,6 +363,7 @@ createApp({
         formData.append('price', price.value);
         formData.append('space', space.value);
         formData.append('image', imageFile.value);
+        formData.append('description', this.description);
 
         const res = await fetch('http://localhost:5000/admin/lessons', {
           method: 'POST',
@@ -387,6 +389,7 @@ createApp({
         price.value = null;
         space.value = null;
         imageFile.value = null;
+        description.value='';
 
         await fetchLessons(true);
         currentPage.value = 'admin';
@@ -492,7 +495,7 @@ createApp({
 
     return {
       currentPage, lessons, cart, searchQuery, sortField, sortOrder, username, password, loggedIn,
-      adminKey, topic, location, price, space, imageFile, firstName, lastName, address, city, country,
+      adminKey, topic, location, price, space, imageFile,  description, firstName, lastName, address, city, country,
       countries, postcode, phone, email, paymentMethod, cardType, cardNumber, cardName, cardExpiry,
       cardCVV, cardError, onCardNumberInput, onExpiryInput, onCvvInput, detectCardType, totalItems,
       totalPrice, validForm, fetchLessons, sortLessons, addToCart, removeFromCart, checkout, login, logout,
