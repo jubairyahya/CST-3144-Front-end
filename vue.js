@@ -1,4 +1,4 @@
-const { createApp, ref, computed, onMounted } = Vue;
+const { createApp, ref, computed, onMounted,watch } = Vue;
 
 createApp({
   setup() {
@@ -478,6 +478,16 @@ createApp({
           cart.value = JSON.parse(storedCart);
         } catch { }
       }
+      // restore current page 
+      const storedPage = localStorage.getItem('currentPage');
+      if (storedPage) {
+        currentPage.value = storedPage;
+      }
+
+      watch(currentPage, (newPage) => {
+        localStorage.setItem('currentPage', newPage);
+      });
+
     });
 
     return {
