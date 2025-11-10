@@ -2,7 +2,7 @@ const { createApp, ref, computed, onMounted } = Vue;
 
 createApp({
   setup() {
-    
+
     const currentPage = ref('home');
     const lessons = ref([]);
     const cart = ref([]);
@@ -62,11 +62,11 @@ createApp({
     const phone = ref('');
     const email = ref('');
     // Payment fields
-    const paymentMethod = ref('card'); 
+    const paymentMethod = ref('card');
     const cardType = ref('');
     const cardNumber = ref('');
     const cardName = ref('');
-    const cardExpiry = ref(''); 
+    const cardExpiry = ref('');
     const cardCVV = ref('');
     const cardError = ref('');
 
@@ -89,7 +89,7 @@ createApp({
         /^[0-9]+$/.test(phone.value) &&
         country.value.trim().length > 0
       );
-      
+
     });
 
 
@@ -103,7 +103,7 @@ createApp({
         if (!res.ok) throw new Error('Failed to load lessons');
         lessons.value = await res.json();
         sortLessons();
-        if (!skipPageChange) currentPage.value = currentPage.value;
+
       } catch (err) {
         console.error('Failed to fetch lessons:', err);
       }
@@ -132,6 +132,7 @@ createApp({
       // Decrease availability in UI
       const targetLesson = lessons.value.find(l => l._id === lesson._id);
       if (targetLesson) targetLesson.space -= 1;
+      localStorage.setItem('cart', JSON.stringify(cart.value));
     }
 
     function removeFromCart(lessonId) {
@@ -141,9 +142,10 @@ createApp({
         if (lessonInList) lessonInList.space += removed.quantity;
       }
       cart.value = cart.value.filter(i => i._id !== lessonId);
+      localStorage.setItem('cart', JSON.stringify(cart.value));
     }
     //card function
-    
+
     function onCardNumberInput(e) {
       // remove non-digits
       let v = e.target.value.replace(/\D/g, '');
@@ -267,12 +269,13 @@ createApp({
 
           alert(`Payment & Order confirmed. Charged card ending ${order.cardLast4}`);
         } else if (paymentMethod.value === 'paypal') {
-          
+
           // For now simulate:
           alert('Redirecting to PayPal (simulated).');
         }
         // Reset
         cart.value = [];
+        localStorage.removeItem('cart');
         firstName.value = '';
         lastName.value = '';
         address.value = '';
@@ -297,7 +300,7 @@ createApp({
     }
 
     //  Admin function
-    
+
     async function login() {
       try {
         const res = await fetch('http://localhost:5000/admin/login', {
@@ -317,6 +320,9 @@ createApp({
         const data = await res.json();
         adminKey.value = data.adminKey;
         loggedIn.value = true;
+        // persist in local storage 
+        localStorage.setItem('adminKey', data.adminKey);
+        localStorage.setItem('loggedIn', 'true');
         alert('Login successful!');
         currentPage.value = 'admin'; // Stay on admin page after login
       } catch (err) {
@@ -324,13 +330,17 @@ createApp({
         alert('Login failed.');
       }
     }
-// logout function                                                          
+    // logout function                                                          
     function logout() {
-  
+
       loggedIn.value = false;
       adminKey.value = '';
       username.value = '';
       password.value = '';
+
+      localStorage.removeItem('adminKey');
+      localStorage.removeItem('loggedIn');
+
       alert('Logged out successfully!');
       currentPage.value = 'admin';
     }
@@ -378,7 +388,7 @@ createApp({
         space.value = null;
         imageFile.value = null;
 
-        await fetchLessons();
+        await fetchLessons(true);
         currentPage.value = 'admin';
 
 
@@ -387,29 +397,29 @@ createApp({
         alert('Failed to add lesson. Check console for details.');
       }
     }
-    
-   
-async function deleteLesson(id) {
-  if (!confirm("Are you sure you want to delete this lesson?")) return;
 
-  try {
-    const res = await fetch(`http://localhost:5000/lessons/${id}`, {
-      method: 'DELETE',
-      headers: { 'x-admin-key': adminKey.value },
-    });
 
-    const text = await res.text();
-    let data;
-    try { data = JSON.parse(text); } 
-    catch { throw new Error("Server did not return JSON: " + text); }
+    async function deleteLesson(id) {
+      if (!confirm("Are you sure you want to delete this lesson?")) return;
 
-    alert(data.message || "Lesson deleted successfully");
-    fetchLessons();
-  } catch (err) {
-    console.error("Failed to delete lesson:", err);
-    alert("Error deleting lesson: " + err.message);
-  }
-}
+      try {
+        const res = await fetch(`http://localhost:5000/lessons/${id}`, {
+          method: 'DELETE',
+          headers: { 'x-admin-key': adminKey.value },
+        });
+
+        const text = await res.text();
+        let data;
+        try { data = JSON.parse(text); }
+        catch { throw new Error("Server did not return JSON: " + text); }
+
+        alert(data.message || "Lesson deleted successfully");
+        fetchLessons();
+      } catch (err) {
+        console.error("Failed to delete lesson:", err);
+        alert("Error deleting lesson: " + err.message);
+      }
+    }
 
     async function editLesson(lesson) {
       const newTopic = prompt("Enter new topic:", lesson.topic);
@@ -448,16 +458,35 @@ async function deleteLesson(id) {
 
 
 
-    // CALL OUT FUNCTION VARIABLE
-    onMounted(fetchLessons);
+
+    onMounted(() => {
+      fetchLessons();
+
+
+      // Restore admin login from localStorage
+      const storedKey = localStorage.getItem('adminKey');
+      const storedLoggedIn = localStorage.getItem('loggedIn') === 'true';
+      if (storedKey && storedLoggedIn) {
+        adminKey.value = storedKey;
+        loggedIn.value = true;
+      }
+
+      // Restore cart from localStorage
+      const storedCart = localStorage.getItem('cart');
+      if (storedCart) {
+        try {
+          cart.value = JSON.parse(storedCart);
+        } catch { }
+      }
+    });
 
     return {
-      currentPage,lessons,cart,searchQuery,sortField,sortOrder,username,password,loggedIn,
-      adminKey,topic,location,price,space,imageFile,firstName,lastName,address,city,country,
-      countries,postcode,phone,email,paymentMethod,cardType,cardNumber,cardName,cardExpiry,
-      cardCVV, cardError,onCardNumberInput,onExpiryInput,onCvvInput,detectCardType,totalItems,
-      totalPrice,validForm,fetchLessons,sortLessons,addToCart,removeFromCart,checkout,login,logout,
-      onFileChange,addLesson,editLesson,deleteLesson,
+      currentPage, lessons, cart, searchQuery, sortField, sortOrder, username, password, loggedIn,
+      adminKey, topic, location, price, space, imageFile, firstName, lastName, address, city, country,
+      countries, postcode, phone, email, paymentMethod, cardType, cardNumber, cardName, cardExpiry,
+      cardCVV, cardError, onCardNumberInput, onExpiryInput, onCvvInput, detectCardType, totalItems,
+      totalPrice, validForm, fetchLessons, sortLessons, addToCart, removeFromCart, checkout, login, logout,
+      onFileChange, addLesson, editLesson, deleteLesson,
     };
   },
 }).mount('#app');
