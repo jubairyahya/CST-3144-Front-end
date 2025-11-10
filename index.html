@@ -34,7 +34,9 @@
         <div class="cart-wrapper" @click="currentPage='cart'">
           <img v-if="currentPage==='home' || currentPage==='cart'" src="images/cart3.png" alt="Cart" class="cart-icon"
             :class="{ disabled: cart.length === 0 }">
-          <span v-if="cart.length > 0" class="cart-count">{{ totalItems }}</span>
+          <span v-if="cart.length > 0 && (currentPage==='home' || currentPage==='cart')" class="cart-count">
+      {{ totalItems }}
+    </span>
         </div>
       </div>
     </header>
@@ -70,7 +72,7 @@
               <li>24/7 support and guidance</li>
               <li>Active learner community</li>
               <li>Weekly live Q&amp;A sessions</li>
-              <li>Certificate upon completion</li>
+              <li>Certificate upon completion.</li>
             </ul>
           </div>
 
