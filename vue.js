@@ -523,7 +523,7 @@ createApp({
       countries, postcode, phone, email, paymentMethod, cardType, cardNumber, cardName, cardExpiry,
       cardCVV, cardError, onCardNumberInput, onExpiryInput, onCvvInput, detectCardType, totalItems,
       totalPrice, validForm, fetchLessons, sortLessons, addToCart, removeFromCart, checkout, login, logout,
-      addLesson, editLesson, deleteLesson,
+      addLesson, editLesson, deleteLesson
     };
   },
 }).mount('#app');
