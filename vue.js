@@ -23,7 +23,7 @@ createApp({
     const price = ref(null);
     const space = ref(null);
     const imageFile = ref(null);
-    const imageUrl=ref('');
+    const imageUrl = ref('');
     const description = ref('');
 
     // Checkout form
@@ -365,46 +365,37 @@ createApp({
       currentPage.value = 'admin';
     }
 
-    function onFileChange(event) {
-      imageFile.value = event.target.files[0];
-    }
+    /* function onFileChange(event) {
+       imageFile.value = event.target.files[0];
+     }*/
 
     async function addLesson() {
       try {
-        if (!topic.value || !location.value || !price.value || !space.value || (!imageUrl.value && !imageFile.value)) {
-          alert('Please fill all fields and include either an image URL or upload a file.');
+        if (!topic.value || !location.value || !price.value || !space.value || !imageUrl.value || !description.value) {
+          alert('Please fill all fields ');
           return;
         }
 
-        const formData = new FormData();
-        formData.append('topic', topic.value);
-        formData.append('location', location.value);
-        formData.append('price', price.value);
-        formData.append('space', space.value);
-        if (imageUrl.value) {
-          formData.append('imageUrl', imageUrl.value);
-        } else if (imageFile.value && imageFile.value[0]) {
-          formData.append('image', imageFile.value[0]);
-        }
-
-        formData.append('description', description.value);
+        const lessonData = {
+          topic: topic.value,
+          location: location.value,
+          price: price.value,
+          space: space.value,
+          image: imageUrl.value,
+          description: description.value,
+        };
 
         const res = await fetch('https://cst-3144-back-end.onrender.com/admin/lessons', {
           method: 'POST',
-          headers: { 'x-admin-key': adminKey.value },
-          body: formData,
+          headers: {
+            'Content-Type': 'application/json',
+            'x-admin-key': adminKey.value,
+          },
+          body: JSON.stringify(lessonData),
         });
 
-        const text = await res.text();
-        if (!res.ok) throw new Error(`Server returned ${res.status}: ${text}`);
-
-        let data;
-        try {
-          data = JSON.parse(text);
-        } catch {
-          throw new Error('Server did not return valid JSON.');
-        }
-
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Failed to add lesson');
         alert(data.message || 'Lesson added successfully!');
 
         //  Clear input fields
@@ -412,7 +403,6 @@ createApp({
         location.value = '';
         price.value = null;
         space.value = null;
-        imageFile.value = null;
         imageUrl.value = '';
         description.value = '';
 
