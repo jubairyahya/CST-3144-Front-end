@@ -1,10 +1,11 @@
-const { createApp, ref, computed, onMounted,watch } = Vue;
+const { createApp, ref, computed, onMounted, watch } = Vue;
 
 createApp({
   setup() {
 
     const currentPage = ref('home');
     const lessons = ref([]);
+    const selectedLesson = Vue.ref({});
     const cart = ref([]);
     const searchQuery = ref('');
     const sortField = ref('');
@@ -108,6 +109,23 @@ createApp({
       } catch (err) {
         console.error('Failed to fetch lessons:', err);
       }
+    }
+
+    function openLesson(lesson) {
+      selectedLesson.value = lesson;
+      currentPage.value = 'details';
+    }
+    // formatted
+    function formatDescription(text) {
+      if (!text) return '';
+      // Convert new lines to <br>
+      let formatted = text.replace(/\n/g, '<br>');
+      // Convert URLs into clickable links
+      formatted = formatted.replace(
+        /(https?:\/\/[^\s]+)/g,
+        '<a href="$1" target="_blank" style="color:#007bff; text-decoration:underline;">$1</a>'
+      );
+      return formatted;
     }
 
     function sortLessons() {
@@ -389,7 +407,7 @@ createApp({
         price.value = null;
         space.value = null;
         imageFile.value = null;
-        description.value='';
+        description.value = '';
 
         await fetchLessons(true);
         currentPage.value = 'admin';
@@ -494,8 +512,8 @@ createApp({
     });
 
     return {
-      currentPage, lessons, cart, searchQuery, sortField, sortOrder, username, password, loggedIn,
-      adminKey, topic, location, price, space, imageFile,  description, firstName, lastName, address, city, country,
+      currentPage, lessons, selectedLesson, formatDescription, openLesson, cart, searchQuery, sortField, sortOrder, username, password, loggedIn,
+      adminKey, topic, location, price, space, imageFile, description, firstName, lastName, address, city, country,
       countries, postcode, phone, email, paymentMethod, cardType, cardNumber, cardName, cardExpiry,
       cardCVV, cardError, onCardNumberInput, onExpiryInput, onCvvInput, detectCardType, totalItems,
       totalPrice, validForm, fetchLessons, sortLessons, addToCart, removeFromCart, checkout, login, logout,

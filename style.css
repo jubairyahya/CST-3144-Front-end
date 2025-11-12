@@ -261,6 +261,33 @@ header h1{
 .lesson-card button:hover {
   background-color: #060116;
 }
+
+/* lesson details*/
+.lesson-details {
+  max-width: 800px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.lesson-description {
+  margin-top: 15px;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.back-btn {
+  background: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
 /*  CART PAGE  */
 .cart-page input {
   width: 200px;

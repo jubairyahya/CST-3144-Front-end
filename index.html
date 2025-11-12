@@ -35,8 +35,8 @@
           <img v-if="currentPage==='home' || currentPage==='cart'" src="images/cart3.png" alt="Cart" class="cart-icon"
             :class="{ disabled: cart.length === 0 }">
           <span v-if="cart.length > 0 && (currentPage==='home' || currentPage==='cart')" class="cart-count">
-      {{ totalItems }}
-    </span>
+            {{ totalItems }}
+          </span>
         </div>
       </div>
     </header>
@@ -79,13 +79,13 @@
           <!-- Center Column lessons  -->
           <div class="center-column">
             <div class="lessons-container">
-              <div v-for="lesson in lessons" :key="lesson._id" class="lesson-card">
+              <div v-for="lesson in lessons" :key="lesson._id" class="lesson-card" @click="openLesson(lesson)">
                 <img :src="'http://localhost:5000/images/' + lesson.image" alt="">
                 <h3>{{ lesson.topic }}</h3>
                 <p>{{ lesson.location }}</p>
                 <p>Price: £{{ lesson.price }}</p>
                 <p>Spaces: {{ lesson.space }}</p>
-                <button @click="addToCart(lesson)" :disabled="lesson.space===0">
+                <button @click.stop="addToCart(lesson)" :disabled="lesson.space===0">
                   Add to Cart
                 </button>
               </div>
@@ -105,6 +105,14 @@
         </div>
 
 
+      </div>
+      <!--detail page  description-->
+      <div v-if="currentPage==='details'" class="lesson-details">
+        <button @click="currentPage='home'" class="back-btn">← Back</button>
+
+        <h2>{{ selectedLesson.topic }}</h2>
+
+        <div class="lesson-description" v-html="formatDescription(selectedLesson.description)"></div>
       </div>
 
       <!-- Cart Page -->
@@ -196,7 +204,7 @@
               <input type="number" v-model="price" placeholder="Enter Price">
               <input type="number" v-model="space" placeholder="Enter Spaces">
               <input type="file" @change="onFileChange">
-               <textarea v-model="description" placeholder="Enter description (HTML allowed)"></textarea>
+              <textarea v-model="description" placeholder="Enter description (HTML allowed)"></textarea>
               <button @click="addLesson">Add Lesson</button>
             </div>
           </div>
