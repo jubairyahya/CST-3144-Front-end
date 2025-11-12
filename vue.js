@@ -141,6 +141,15 @@ createApp({
       });
     }
 
+    //opencart
+    function openCart() {
+      if (cart.value.length === 0) {
+        alert('your cart is empty !');
+        return;
+      }
+      currentPage.value = 'cart';
+    }
+
     //  Cart 
     function addToCart(lesson) {
       if (lesson.space <= 0) return;
@@ -508,12 +517,13 @@ createApp({
     });
 
     return {
-      currentPage, lessons, selectedLesson, formatDescription, openLesson, cart, searchQuery, sortField, sortOrder, username, password, loggedIn,
+      currentPage, lessons, selectedLesson, formatDescription, openLesson, openCart,
+      cart, searchQuery, sortField, sortOrder, username, password, loggedIn,
       adminKey, topic, location, price, space, imageUrl, description, firstName, lastName, address, city, country,
       countries, postcode, phone, email, paymentMethod, cardType, cardNumber, cardName, cardExpiry,
       cardCVV, cardError, onCardNumberInput, onExpiryInput, onCvvInput, detectCardType, totalItems,
       totalPrice, validForm, fetchLessons, sortLessons, addToCart, removeFromCart, checkout, login, logout,
-       addLesson, editLesson, deleteLesson,
+      addLesson, editLesson, deleteLesson,
     };
   },
 }).mount('#app');

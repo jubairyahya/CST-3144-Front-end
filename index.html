@@ -31,7 +31,7 @@
 
       <!-- Cart -->
       <div class="header-right">
-        <div class="cart-wrapper" @click="currentPage='cart'">
+        <div class="cart-wrapper" @click="openCart'">
           <img v-if="currentPage==='home' || currentPage==='cart'" src="images/cart3.png" alt="Cart" class="cart-icon"
             :class="{ disabled: cart.length === 0 }">
           <span v-if="cart.length > 0 && (currentPage==='home' || currentPage==='cart')" class="cart-count">
