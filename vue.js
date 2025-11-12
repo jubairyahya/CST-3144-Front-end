@@ -23,6 +23,7 @@ createApp({
     const price = ref(null);
     const space = ref(null);
     const imageFile = ref(null);
+    const imageUrl=ref('');
     const description = ref('');
 
     // Checkout form
@@ -370,8 +371,8 @@ createApp({
 
     async function addLesson() {
       try {
-        if (!topic.value || !location.value || !price.value || !space.value || !imageFile.value) {
-          alert('Please fill all fields and select an image.');
+        if (!topic.value || !location.value || !price.value || !space.value || (!imageUrl.value && !imageFile.value)) {
+          alert('Please fill all fields and include either an image URL or upload a file.');
           return;
         }
 
@@ -380,7 +381,12 @@ createApp({
         formData.append('location', location.value);
         formData.append('price', price.value);
         formData.append('space', space.value);
-        formData.append('image', imageFile.value[0]);
+        if (imageUrl.value) {
+          formData.append('imageUrl', imageUrl.value);
+        } else if (imageFile.value && imageFile.value[0]) {
+          formData.append('image', imageFile.value[0]);
+        }
+
         formData.append('description', description.value);
 
         const res = await fetch('https://cst-3144-back-end.onrender.com/admin/lessons', {
@@ -407,6 +413,7 @@ createApp({
         price.value = null;
         space.value = null;
         imageFile.value = null;
+        imageUrl.value = '';
         description.value = '';
 
         await fetchLessons(true);
