@@ -380,7 +380,7 @@ createApp({
         formData.append('location', location.value);
         formData.append('price', price.value);
         formData.append('space', space.value);
-        formData.append('image', imageFile.value);
+        formData.append('image', imageFile.value[0]);
         formData.append('description', description.value);
 
         const res = await fetch('https://cst-3144-back-end.onrender.com/admin/lessons', {
