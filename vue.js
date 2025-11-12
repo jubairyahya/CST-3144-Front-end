@@ -98,9 +98,9 @@ createApp({
     //  Lessons 
     async function fetchLessons(skipPageChange = false) {
       try {
-        let url = 'http://localhost:5000/lessons';
+        let url = 'https://cst-3144-back-end.onrender.com/lessons';
         if (searchQuery.value)
-          url = `http://localhost:5000/search?q=${encodeURIComponent(searchQuery.value)}`;
+          url = `https://cst-3144-back-end.onrender.com/search?q=${encodeURIComponent(searchQuery.value)}`;
         const res = await fetch(url);
         if (!res.ok) throw new Error('Failed to load lessons');
         lessons.value = await res.json();
@@ -277,7 +277,7 @@ createApp({
             cardBrand: cardType.value || detectCardType(digits) || 'unknown'
           };
 
-          const res = await fetch('http://localhost:5000/orders', {
+          const res = await fetch('https://cst-3144-back-end.onrender.com/orders', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(order),
@@ -322,7 +322,7 @@ createApp({
 
     async function login() {
       try {
-        const res = await fetch('http://localhost:5000/admin/login', {
+        const res = await fetch('https://cst-3144-back-end.onrender.com/admin/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -383,7 +383,7 @@ createApp({
         formData.append('image', imageFile.value);
         formData.append('description', description.value);
 
-        const res = await fetch('http://localhost:5000/admin/lessons', {
+        const res = await fetch('https://cst-3144-back-end.onrender.com/admin/lessons', {
           method: 'POST',
           headers: { 'x-admin-key': adminKey.value },
           body: formData,
@@ -424,7 +424,7 @@ createApp({
       if (!confirm("Are you sure you want to delete this lesson?")) return;
 
       try {
-        const res = await fetch(`http://localhost:5000/lessons/${id}`, {
+        const res = await fetch(`https://cst-3144-back-end.onrender.com/lessons/${id}`, {
           method: 'DELETE',
           headers: { 'x-admin-key': adminKey.value },
         });
@@ -454,7 +454,7 @@ createApp({
       }
 
       try {
-        const res = await fetch(`http://localhost:5000/lessons/${lesson._id}`, {
+        const res = await fetch(`https://cst-3144-back-end.onrender.com/lessons/${lesson._id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
