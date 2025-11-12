@@ -22,7 +22,6 @@ createApp({
     const location = ref('');
     const price = ref(null);
     const space = ref(null);
-    const imageFile = ref(null);
     const imageUrl = ref('');
     const description = ref('');
 
@@ -510,11 +509,11 @@ createApp({
 
     return {
       currentPage, lessons, selectedLesson, formatDescription, openLesson, cart, searchQuery, sortField, sortOrder, username, password, loggedIn,
-      adminKey, topic, location, price, space, imageFile, description, firstName, lastName, address, city, country,
+      adminKey, topic, location, price, space, imageUrl, description, firstName, lastName, address, city, country,
       countries, postcode, phone, email, paymentMethod, cardType, cardNumber, cardName, cardExpiry,
       cardCVV, cardError, onCardNumberInput, onExpiryInput, onCvvInput, detectCardType, totalItems,
       totalPrice, validForm, fetchLessons, sortLessons, addToCart, removeFromCart, checkout, login, logout,
-      onFileChange, addLesson, editLesson, deleteLesson,
+       addLesson, editLesson, deleteLesson,
     };
   },
 }).mount('#app');
