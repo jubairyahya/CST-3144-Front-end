@@ -80,7 +80,7 @@
           <div class="center-column">
             <div class="lessons-container">
               <div v-for="lesson in lessons" :key="lesson._id" class="lesson-card" @click="openLesson(lesson)">
-                <img :src="'http://localhost:5000/images/' + lesson.image" alt="">
+                <img :src=" lesson.image" alt="">
                 <h3>{{ lesson.topic }}</h3>
                 <p>{{ lesson.location }}</p>
                 <p>Price: £{{ lesson.price }}</p>
@@ -122,7 +122,7 @@
         <div v-else>
           <div v-for="item in cart" :key="item._id" class="cart-item">
 
-            <img :src="'http://localhost:5000/images/' + item.image" :alt="item.topic" class="cart-item-image" />
+            <img :src=" item.image" :alt="item.topic" class="cart-item-image" />
             <p>{{ item.topic }} - {{ item.quantity }} x £{{ item.price }}</p>
             <button @click="removeFromCart(item._id)">Remove</button>
           </div>
@@ -216,7 +216,7 @@
             <div v-if="lessons.length === 0">No lessons found.</div>
             <div v-else class="admin-lessons-list">
               <div v-for="lesson in lessons" :key="lesson._id" class="admin-lesson-item">
-                <img :src="'http://localhost:5000/images/' + lesson.image" alt="" width="80">
+                <img :src="lesson.image" alt="" width="80">
                 <div>
                   <strong>{{ lesson.topic }}</strong> - £{{ lesson.price }} ({{ lesson.space }} spaces)
                   <p>{{ lesson.location }}</p>
