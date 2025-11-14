@@ -116,6 +116,12 @@ createApp({
       currentPage.value = 'details';
       localStorage.setItem('selectedLesson', JSON.stringify(lesson));
       localStorage.setItem('currentPage', 'details');
+
+      // Scroll 
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     }
     // formatted
     function formatDescription(text) {
@@ -129,6 +135,7 @@ createApp({
       );
       return formatted;
     }
+
 
     function sortLessons() {
       if (!sortField.value) return;
