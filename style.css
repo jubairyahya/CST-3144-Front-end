@@ -545,24 +545,116 @@ button:disabled {
 }
 
 /* alighnment for mobile */
-
+/* ================= MOBILE / SMALL SCREENS ================= */
 @media (max-width: 768px) {
-  .left-column, .right-column {
-    position: static;
-    width: 90%;
-    margin: 1rem auto;
-  }
 
-  .center-column {
-    margin: 1rem auto;
-    width: 95%;
-  }
-
-  .lesson-card {
-    width: 90%;
+  /* ---------------- HEADER ---------------- */
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
   }
 
   header h1 {
     font-size: 2rem;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+
+  .header-left,
+  .header-right,
+  .search-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .search-box {
+    width: 90%;
+    text-align: center;
+  }
+
+  /* ---------------- PAGE LAYOUT ---------------- */
+  .page-layout {
+    flex-direction: column; /* stack columns vertically */
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  /* Stack left, center, right columns */
+  .left-column,
+  .center-column,
+  .right-column {
+    position: static;   /* remove fixed positioning */
+    width: 95%;         /* almost full width */
+    margin: 1rem auto;  /* center them */
+  }
+
+  /* ---------------- LESSONS ---------------- */
+  .lessons-container {
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .lesson-card {
+    width: 90%;  /* fill most of the screen */
+    margin: 0 auto;
+  }
+
+  .lesson-card img {
+    height: auto; /* scale images proportionally */
+  }
+
+  .lesson-details {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .lesson-description {
+    font-size: 1rem;
+  }
+
+  .back-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* ---------------- CHECKOUT & INPUTS ---------------- */
+  .checkout-box,
+  .admin-add-card,
+  .cart-page input,
+  .checkout-row input,
+  .checkout-row select,
+  .admin-add-card input {
+    width: 90%;
+  }
+
+  .checkout-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* ---------------- ADMIN LESSON CARDS ---------------- */
+  .admin-lesson-card {
+    width: 90%;
+    margin: 0.5rem auto;
+  }
+
+  .admin-lesson-card img {
+    height: auto;
+  }
+
+  /* ---------------- LOGOUT BUTTON ---------------- */
+  .logout-btn-page {
+    top: 10px;
+    right: 10px;
+    padding: 0.4rem 0.8rem;
+  }
+
+  /* ---------------- GENERAL FONT SIZE ---------------- */
+  body, p, input, select, button {
+    font-size: 1rem;
   }
 }
