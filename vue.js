@@ -114,7 +114,8 @@ createApp({
     function openLesson(lesson) {
       selectedLesson.value = lesson;
       currentPage.value = 'details';
-       localStorage.setItem('details', JSON.stringify(details.value));
+      localStorage.setItem('selectedLesson', JSON.stringify(lesson));
+      localStorage.setItem('currentPage', 'details');
     }
     // formatted
     function formatDescription(text) {
@@ -374,7 +375,7 @@ createApp({
       currentPage.value = 'admin';
     }
 
-   
+
 
     async function addLesson() {
       try {
@@ -507,6 +508,12 @@ createApp({
       const storedPage = localStorage.getItem('currentPage');
       if (storedPage) {
         currentPage.value = storedPage;
+      }
+      const storedLesson = localStorage.getItem('selectedLesson');
+      if (storedLesson) {
+        try {
+          selectedLesson.value = JSON.parse(storedLesson);
+        } catch { }
       }
 
       watch(currentPage, (newPage) => {
