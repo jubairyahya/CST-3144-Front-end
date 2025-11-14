@@ -114,6 +114,7 @@ createApp({
     function openLesson(lesson) {
       selectedLesson.value = lesson;
       currentPage.value = 'details';
+       localStorage.setItem('details', JSON.stringify(details.value));
     }
     // formatted
     function formatDescription(text) {
@@ -373,9 +374,7 @@ createApp({
       currentPage.value = 'admin';
     }
 
-    /* function onFileChange(event) {
-       imageFile.value = event.target.files[0];
-     }*/
+   
 
     async function addLesson() {
       try {
