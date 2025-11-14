@@ -543,3 +543,26 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* alighnment for mobile */
+
+@media (max-width: 768px) {
+  .left-column, .right-column {
+    position: static;
+    width: 90%;
+    margin: 1rem auto;
+  }
+
+  .center-column {
+    margin: 1rem auto;
+    width: 95%;
+  }
+
+  .lesson-card {
+    width: 90%;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+}
