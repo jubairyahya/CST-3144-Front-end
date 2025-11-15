@@ -1,83 +1,111 @@
 /*Body ==*/
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    background-color: rgb(239, 245, 249);
-    background-image: url('images/bg7.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: rgb(239, 245, 249);
+  background-image: url('images/bg7.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  text-align: center;
 }
 
 /*Header*/
 header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: #23162f;
-    color: white;
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #000000;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* left side header*/
 .header-left {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .header-left button {
-    background: white;
-    color: #291f33;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 5px;
+  background: white;
+  color: #0b080e;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .header-left button:hover {
-    background: white;
+  background: rgb(88, 76, 76);
 }
 
 /*search box*/
 
 .search-container {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .search-box {
-    padding: 0.5rem 0.5rem 0.5rem 1.8rem;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='gray' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242 1.41a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E");
-    border-radius: 5px;
-    border: none;
-    width: 200px;
-    background-color: aliceblue;
-    background-repeat: no-repeat;
-    background-position: 6px center;
-    background-size: 16px 16px;
+  padding: 0.5rem 0.5rem 0.5rem 1.8rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='gray' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242 1.41a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E");
+  border-radius: 5px;
+  border: none;
+  width: 200px;
+  background-color: aliceblue;
+  background-repeat: no-repeat;
+  background-position: 6px center;
+  background-size: 16px 16px;
 }
 
 /*Center page title */
-header h1{
-    margin:0;
-    text-align: center;
-    flex-grow: 1;
-    font-size: 4rem;
-    font-style: oblique;
-    font-family:  'Zapf Chancery', cursive;
+header h1 {
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
+  font-size: 4rem;
+  font-style: oblique;
+font-family: "Cinzel", "Times New Roman", serif;
+
+
+
+
 }
 
 /*Right side section*/
-.header-right{
-    display: flex;
-    align-items: center;
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Footer a */
+.page-footer {
+  position: fixed;
+  bottom: 40px;        
+  left: 10px;         
+  width: 210px;        
+  color: rgb(0, 0, 0);
+  background: rgba(255, 255, 255);  
+  padding: 10px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  z-index: 1000;
+}
+
+.page-footer h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  text-decoration: underline;
+}
+
+.page-footer p {
+  margin: 4px 0;
 }
 
 .cart-wrapper {
@@ -120,7 +148,7 @@ header h1{
 .search-sort {
   position: fixed;
   top: 110px;
-  left:22%;
+  left: 22%;
   right: 22%;
   z-index: 950;
   padding: 0.7rem;
@@ -139,6 +167,7 @@ header h1{
   width: 180px;
   text-align: center;
 }
+
 /* Page layout */
 .page-layout {
   display: flex;
@@ -153,15 +182,16 @@ header h1{
 /* Left Column */
 .left-column {
   position: fixed;
-  top: 110px;  
+  top: 110px;
   left: 0;
-  z-index:1000;  
+  z-index: 1000;
   width: 20%;
   background-color: #f8f8ff;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  font-family: 'Arial', sans-serif; /* clean readable font */
+  font-family: 'Arial', sans-serif;
+  /* clean readable font */
 }
 
 .left-column h4 {
@@ -186,15 +216,16 @@ header h1{
 /* Right Column */
 .right-column {
   position: fixed;
-  top: 110px;  
-  right:0;
-  z-index:1000;  
+  top: 110px;
+  right: 0;
+  z-index: 1000;
   width: 20%;
   background-color: #f8f8ff;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  font-family: 'Arial', sans-serif; /* main font */
+  font-family: 'Arial', sans-serif;
+  /* main font */
 }
 
 .right-column h4 {
@@ -208,7 +239,8 @@ header h1{
 .right-column .cursive-list {
   list-style-type: disc;
   padding-left: 1.2rem;
-  font-family: 'Dancing Script', cursive; /* cursive font for offers */
+  font-family: 'Dancing Script', cursive;
+  /* cursive font for offers */
   font-size: 1.5rem;
   color: #b10822;
   line-height: 1.6;
@@ -269,7 +301,7 @@ header h1{
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .lesson-description {
@@ -289,27 +321,35 @@ header h1{
 }
 
 /*  CART PAGE  */
+.cart-page {
+  color: white;
+}
+
 .cart-page input {
   width: 200px;
   padding: 0.5rem;
   margin: 0.3rem auto;
   text-align: center;
+  color: black;
+
 }
 
 .cart-page button {
   margin: 0.5rem 0;
+  color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.993);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .cart-item-image {
   width: 120px;
-  /* desired width */
   height: 80px;
-  /* desired height */
   object-fit: cover;
-  /* maintain aspect ratio and crop if needed */
   border-radius: 5px;
-  /* optional, for a nicer look */
 }
+  
 
 /*  CHECKOUT BOX  */
 .checkout-box {
@@ -325,6 +365,11 @@ header h1{
   margin-left: auto;
   margin-right: auto;
   gap: 0.5rem;
+}
+
+.checkout-box h3 {
+  color: #000000;
+
 }
 
 .checkout-row {
@@ -408,17 +453,19 @@ header h1{
   color: white;
   cursor: pointer;
 }
+
 /* Add Lesson Card Style */
 .admin-add-card {
   background-color: white;
   padding: 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
   max-width: 500px;
-  margin: 0 auto; /* centers it inside admin-section */
+  margin: 0 auto;
+  /* centers it inside admin-section */
 }
 
 .admin-add-card input {
@@ -445,6 +492,7 @@ header h1{
 .admin-box button:hover {
   background-color: #060116;
 }
+
 /* Admin Lessons Display  */
 .admin-lessons {
   margin-top: 30px;
@@ -463,13 +511,13 @@ header h1{
   width: 250px;
   text-align: center;
   padding: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .admin-lesson-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .admin-lesson-card img {
@@ -577,7 +625,8 @@ button:disabled {
 
   /* ---------------- PAGE LAYOUT ---------------- */
   .page-layout {
-    flex-direction: column; /* stack columns vertically */
+    flex-direction: column;
+    /* stack columns vertically */
     align-items: center;
     gap: 1.5rem;
   }
@@ -586,9 +635,12 @@ button:disabled {
   .left-column,
   .center-column,
   .right-column {
-    position: static;   /* remove fixed positioning */
-    width: 95%;         /* almost full width */
-    margin: 1rem auto;  /* center them */
+    position: static;
+    /* remove fixed positioning */
+    width: 95%;
+    /* almost full width */
+    margin: 1rem auto;
+    /* center them */
   }
 
   /* ---------------- LESSONS ---------------- */
@@ -599,12 +651,14 @@ button:disabled {
   }
 
   .lesson-card {
-    width: 90%;  /* fill most of the screen */
+    width: 90%;
+    /* fill most of the screen */
     margin: 0 auto;
   }
 
   .lesson-card img {
-    height: auto; /* scale images proportionally */
+    height: auto;
+    /* scale images proportionally */
   }
 
   .lesson-details {
@@ -654,7 +708,11 @@ button:disabled {
   }
 
   /* ---------------- GENERAL FONT SIZE ---------------- */
-  body, p, input, select, button {
+  body,
+  p,
+  input,
+  select,
+  button {
     font-size: 1rem;
   }
 }
