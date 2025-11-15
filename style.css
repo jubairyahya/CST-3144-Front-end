@@ -627,31 +627,47 @@ button:disabled {
   .page-layout {
     display: flex;
     flex-direction: column;
-    /* stack columns vertically */
+    width: 100%;
     align-items: center;
     gap: 1.5rem;
     margin-top: 120px;
-  }
-
-  /* Stack left, center, right columns */
-  .center-column,
-  .left-column,
-  .right-column {
     position: static !important;
-    width: 95%;
-    margin: 0 auto;
   }
 
   .center-column {
     order: 1;
+    position: static !important;
+    width: 95%;
+    margin: 0 auto !important;
   }
+
 
   .left-column {
     order: 2;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    width: 95%;
+    margin: 0 auto !important;
   }
+
 
   .right-column {
     order: 3;
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    width: 95%;
+    margin: 0 auto !important;
+  }
+
+  /* ------- Footer stays LAST and clean ------- */
+  .page-footer {
+    order: 4;
+    position: static !important;
+    width: 100%;
+    margin: 2rem auto 1rem auto;
+    text-align: center;
   }
 
   /* ---------------- LESSONS ---------------- */
@@ -719,20 +735,6 @@ button:disabled {
   }
 
   /*footer*/
-
-  .page-footer {
-    position: static !important;
-    width: 100%;
-    margin: 1.5rem auto 0 auto;
-    left: 0;
-    bottom: 0;
-    padding: 1rem;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  }
-
   .page-footer h4 {
     font-size: 1.2rem;
   }
