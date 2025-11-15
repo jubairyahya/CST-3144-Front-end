@@ -632,8 +632,8 @@ button:disabled {
   }
 
   /* Stack left, center, right columns */
+   .center-column,
   .left-column,
-  .center-column,
   .right-column {
     position: static;
     /* remove fixed positioning */
@@ -652,13 +652,13 @@ button:disabled {
 
   .lesson-card {
     width: 90%;
-    /* fill most of the screen */
+    
     margin: 0 auto;
   }
 
   .lesson-card img {
     height: auto;
-    /* scale images proportionally */
+   
   }
 
   .lesson-details {
@@ -675,7 +675,7 @@ button:disabled {
     font-size: 0.9rem;
   }
 
-  /* ---------------- CHECKOUT & INPUTS ---------------- */
+ /* checkout */
   .checkout-box,
   .admin-add-card,
   .cart-page input,
@@ -705,6 +705,28 @@ button:disabled {
     top: 10px;
     right: 10px;
     padding: 0.4rem 0.8rem;
+  }
+  /*footer*/
+
+   .page-footer {
+    position: static;
+    width: 100%;
+    margin: 1.5rem auto 0 auto;
+    left: 0;
+    bottom: 0;
+    padding: 1rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .page-footer h4 {
+    font-size: 1.2rem;
+  }
+
+  .page-footer p {
+    font-size: 1rem;
   }
 
   /* ---------------- GENERAL FONT SIZE ---------------- */
