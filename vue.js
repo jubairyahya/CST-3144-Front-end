@@ -157,6 +157,12 @@ createApp({
         return;
       }
       currentPage.value = 'cart';
+      
+      // Scroll 
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     }
 
     //  Cart 
