@@ -494,6 +494,10 @@ header h1 {
 }
 
 /* Admin Lessons Display  */
+
+.admin-section h3 {
+  color: #fff; 
+}
 .admin-lessons {
   margin-top: 30px;
   width: 90%;

@@ -226,8 +226,8 @@
           <div class="admin-section">
             <h3>All Lessons</h3>
             <div v-if="lessons.length === 0">No lessons found.</div>
-            <div v-else class="admin-lessons-list">
-              <div v-for="lesson in lessons" :key="lesson._id" class="admin-lesson-item">
+            <div v-else class="admin-lessons">
+              <div v-for="lesson in lessons" :key="lesson._id" class="admin-lesson-card">
                 <img :src="lesson.image" alt="" width="80">
                 <div>
                   <strong>{{ lesson.topic }}</strong> - £{{ lesson.price }} ({{ lesson.space }} spaces)
