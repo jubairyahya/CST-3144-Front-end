@@ -161,8 +161,8 @@
 
             <div class="checkout-row">
               <input v-model="postcode" placeholder="Postcode">
-              <input v-model="phone" placeholder="Phone Number">
-              <input v-model="email" placeholder="Email">
+              <input v-model="phone" type="tel" placeholder="Phone Number">
+              <input v-model="email" type="email" placeholder="Email">
             </div>
 
             <div v-if="paymentMethod === 'card'" class="card-section">
